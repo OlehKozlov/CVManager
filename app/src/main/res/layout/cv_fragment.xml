@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="Open"
+            android:layout_margin="5dp"
+            android:id="@+id/buttonCVOpen" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="Send"
+            android:layout_margin="5dp"
+            android:id="@+id/buttonCVSend" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="Delete"
+            android:layout_margin="5dp"
+            android:id="@+id/buttonCVDelete" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="Back"
+            android:layout_margin="5dp"
+            android:id="@+id/buttonCVBack" />
+    </LinearLayout>
+
+
+</ScrollView>

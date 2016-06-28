@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -30,6 +31,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -441,6 +444,68 @@ public class MainActivity extends AppCompatActivity
 
     public void onMainFragmentButtonClick(View view) {
         view.setBackgroundResource(R.color.button_background_active);
+        Button button = (Button) view;
+        if (button.getText().toString().equals("New")) {
+
+        } else {
+            SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = sPref.edit();
+            editor.putString("cv", button.getText().toString());
+            editor.commit();
+            replaceFragmentToCV();
+        }
+    }
+
+    public void onCVFragmentButtonClick(View view) {
+        view.setBackgroundResource(R.color.button_background_active);
+        SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+        String cvName = sPref.getString("cv", "");
+        switch (view.getId()) {
+            case R.id.buttonCVOpen: {
+                String targetFile = Environment.getExternalStorageDirectory().getPath() +
+                        "/CV Manager/" + cvName + ".pdf";
+                Uri targetUri = Uri.parse(targetFile);
+                Intent openIntent = new Intent(Intent.ACTION_VIEW, targetUri);
+                openIntent.setDataAndType(targetUri, "application/pdf");
+                startActivity(openIntent);
+                break;
+            }
+            case R.id.buttonCVSend: {
+                String targetFile = Environment.getExternalStorageDirectory().getPath() +
+                        "/CV Manager/" + cvName + ".pdf";
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setType("application/pdf");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, "");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+                emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(targetFile));
+                startActivity(Intent.createChooser(emailIntent, "Send email"));
+                break;
+            }
+            case R.id.buttonCVDelete: {
+                File deleteFile = new File(Environment.getExternalStorageDirectory() +
+                        "/" + "CV Manager" + "/" + cvName + ".pdf");
+                try {
+                    deleteFile.getCanonicalFile().delete();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                replaceFragmentToCV();
+                break;
+            }
+            case R.id.buttonCVBack: {
+                replaceFragmentToMain();
+                break;
+            }
+        }
+    }
+
+    private void replaceFragmentToCV() {
+        Fragment cvFragment = new CVFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainer, cvFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void replaceFragmentToMain() {
