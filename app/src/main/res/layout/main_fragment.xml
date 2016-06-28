@@ -5,9 +5,8 @@
     android:focusable="false"
     android:focusableInTouchMode="false"
     android:gravity="center"
-    android:numColumns="auto_fit"
-    android:id="@+id/mainContainer"
-    android:columnWidth="125dp">
+    android:numColumns="1"
+    android:id="@+id/mainContainer">
 
 
 </GridView>

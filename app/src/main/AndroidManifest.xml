@@ -23,9 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CVsActivity"
-            android:label="@string/title_activity_cvs"></activity>
-        <activity
             android:name=".InfoActivity"
             android:label="@string/title_activity_info"></activity>
         <activity

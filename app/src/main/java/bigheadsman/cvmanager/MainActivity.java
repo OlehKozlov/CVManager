@@ -446,7 +446,7 @@ public class MainActivity extends AppCompatActivity
         view.setBackgroundResource(R.color.button_background_active);
         Button button = (Button) view;
         if (button.getText().toString().equals("New")) {
-
+            replaceFragmentToNewCV();
         } else {
             SharedPreferences sPref = getPreferences(MODE_PRIVATE);
             SharedPreferences.Editor editor = sPref.edit();
@@ -504,6 +504,14 @@ public class MainActivity extends AppCompatActivity
         Fragment cvFragment = new CVFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, cvFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void replaceFragmentToNewCV() {
+        Fragment newCvFragment = new NewCVFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainer, newCvFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
