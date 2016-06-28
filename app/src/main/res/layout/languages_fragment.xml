@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/languagesContainer"
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"></LinearLayout>
+
+        <EditText
+            android:id="@+id/languagesText"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/hint_text" />
+
+        <Spinner
+            android:id="@+id/spinnerLanguages"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:entries="@array/languagesLevel" />
+
+        <Button
+            android:id="@+id/buttonAddLanguages"
+            style="@style/button_style"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:onClick="onLanguagesButtonClick"
+            android:text="@string/append_button" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonDeleteLanguages"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="5dp"
+                android:onClick="onLanguagesButtonClick"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/buttonBackLanguages"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:onClick="onLanguagesButtonClick"
+                android:text="@string/back" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

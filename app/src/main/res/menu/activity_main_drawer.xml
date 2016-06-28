@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/personal_data"
+            android:title="@string/personal_data" />
+        <item
+            android:id="@+id/education"
+            android:title="@string/education" />
+        <item
+            android:id="@+id/skills"
+            android:title="@string/skills" />
+        <item
+            android:id="@+id/experience"
+            android:title="@string/experience" />
+        <item
+            android:id="@+id/languages"
+            android:title="@string/languages" />
+        <item
+            android:id="@+id/about_myself"
+            android:title="@string/about_myself" />
+        <item
+            android:id="@+id/letters"
+            android:title="@string/cover_letters" />
+    </group>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/choose_languages"
+                android:title="Choose language" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/educationContainer"
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ScrollView
+                android:id="@+id/scrollView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinnerTypeOfEdu"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTintMode="multiply"
+                    android:clickable="true"
+                    android:contextClickable="true" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scrollStartEdu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinnerStartEdu"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:entries="@array/educationTerm" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scrollView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spinnerEduEnd"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:entries="@array/educationTerm" />
+            </ScrollView>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/eduMultiText"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/hint_text"
+            android:inputType="textMultiLine"
+            android:lines="4" />
+
+        <Button
+            android:id="@+id/addNewEdu"
+            style="@style/button_style"
+            android:layout_width="185dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:onClick="onEducationButtonClick"
+            android:text="@string/append_button" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/educationDelete"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="5dp"
+                android:onClick="onEducationButtonClick"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/educationBack"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:onClick="onEducationButtonClick"
+                android:text="@string/back" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

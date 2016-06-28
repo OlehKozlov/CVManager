@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/experienceContainer"
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerExperienceStart"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/educationTerm" />
+
+            <Spinner
+                android:id="@+id/spinnerExperienceEnd"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:entries="@array/educationTerm" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextExp"
+            android:layout_width="287dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:focusable="true"
+            android:hint="@string/hint_text"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/buttonAddExperience"
+            style="@style/button_style"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:onClick="onExperienceButtonClick"
+            android:text="@string/append_button" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonDeleteExperience"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="5dp"
+                android:onClick="onExperienceButtonClick"
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/buttonBackExperience"
+                style="@style/button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:onClick="onExperienceButtonClick"
+                android:text="@string/back" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
