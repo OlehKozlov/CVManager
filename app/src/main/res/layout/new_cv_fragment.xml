@@ -31,10 +31,10 @@
             android:id="@+id/newCVPersonalContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/textView20"
@@ -49,10 +49,10 @@
             android:id="@+id/newCVEducationContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/textView17"
@@ -67,10 +67,10 @@
             android:id="@+id/newCVSkillsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/textView19"
@@ -84,10 +84,10 @@
             android:id="@+id/newCVExperienceContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/textView21"
@@ -102,10 +102,10 @@
             android:id="@+id/newCVLanguagesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/textView22"
@@ -120,12 +120,12 @@
             android:id="@+id/newCVAboutMyselfContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
 
-        <TextView
+        <!--<TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,10 +138,10 @@
             android:id="@+id/newCVCoverLetterContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -151,20 +151,22 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/newCVAppend"
+                android:id="@+id/buttonNewCVCreate"
                 style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:onClick="onNewCVButtonClick"
                 android:text="@string/create" />
 
             <Button
-                android:id="@+id/newCVBack"
+                android:id="@+id/buttonNewCVBack"
                 style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
+                android:onClick="onNewCVButtonClick"
                 android:text="@string/back" />
 
         </LinearLayout>

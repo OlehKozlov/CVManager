@@ -500,6 +500,20 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void onNewCVButtonClick(View view) {
+        switch (view.getId()) {
+          /*  case R.id.buttonNewCVCreate:{
+                NewCVFragment fragment = new NewCVFragment();
+                fragment.createCV(getApplicationContext());
+                replaceFragmentToMain();
+                break;
+            }*/
+            case R.id.buttonNewCVBack: {
+                replaceFragmentToMain();
+            }
+        }
+    }
+
     private void replaceFragmentToCV() {
         Fragment cvFragment = new CVFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
