@@ -25,13 +25,23 @@
             android:title="@string/cover_letters" />
     </group>
 
-    <item android:title="Settings">
+
+    <item android:title="">
         <menu>
             <item
-                android:id="@+id/choose_languages"
-                android:title="Choose language" />
-
+                android:id="@+id/exit"
+                android:title="@string/exit" />
         </menu>
+
     </item>
+
+    <!-- <item android:title="Settings">
+         <menu>
+             <item
+                 android:id="@+id/choose_languages"
+                 android:title="Choose language" />
+
+         </menu>
+     </item>-->
 
 </menu>

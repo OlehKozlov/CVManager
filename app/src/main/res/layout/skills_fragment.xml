@@ -1,79 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/scillsContainer"
             android:layout_width="287dp"
             android:layout_height="match_parent"
-            android:id="@+id/scillsContainer"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"></LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="287dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
 
             <EditText
-                android:layout_width="287dp"
-                android:layout_height="30dp"
                 android:id="@+id/editTextNewScill"
-
+                android:layout_width="287dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_style"
                 android:focusable="true"
                 android:hint="@string/hint_text"
-                android:layout_gravity="center_horizontal" />
+                android:lines="4" />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/buttonSkillAdd"
             android:layout_width="185dp"
             android:layout_height="40dp"
-            android:text="@string/append_button"
-            android:id="@+id/buttonSkillAdd"
-            style="@style/button_style"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:background="@drawable/button_style"
             android:onClick="onSkillsButoonClick"
-            android:layout_gravity="center_horizontal" />
+            android:text="@string/append_button" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/delete"
-                style="@style/button_style"
-
                 android:id="@+id/buttonSkillDelete"
-                android:onClick="onSkillsButoonClick"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="5dp" />
-
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/button_style"
-
-                android:text="@string/back"
-                android:id="@+id/buttonSkillBack"
-                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/button_style"
                 android:onClick="onSkillsButoonClick"
-                android:layout_gravity="center_horizontal" />
+                android:text="@string/delete" />
+
+            <Button
+                android:id="@+id/buttonSkillBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/button_style"
+                android:onClick="onSkillsButoonClick"
+                android:text="@string/back" />
         </LinearLayout>
 
     </LinearLayout>

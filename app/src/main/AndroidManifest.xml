@@ -22,15 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".InfoActivity"
-            android:label="@string/title_activity_info"></activity>
-        <activity
-            android:name=".NewCVActivity"
-            android:label="@string/title_activity_new_cv"></activity>
-        <activity
-            android:name=".SendCVActivity"
-            android:label="@string/title_activity_send_cv"></activity>
         <!-- <activity
              android:name=".MainActivity"
              android:label="@string/title_activity_main"

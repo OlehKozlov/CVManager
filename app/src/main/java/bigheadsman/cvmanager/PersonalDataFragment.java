@@ -21,9 +21,9 @@ public class PersonalDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.personal_data_fragment, container, false);
         dbHealper = new DatabaseHelper(view.getContext());
-        SQLiteDatabase db = dbHealper.getReadableDatabase(); // get database to reading
+        SQLiteDatabase db = dbHealper.getReadableDatabase();
         final Cursor c = db.query("personalTable", null, null, null, null, null, null);
-        if (c.moveToLast()) { // if table is true get data
+        if (c.moveToLast()) {
             int fotoColIndex = c.getColumnIndex("foto");
             int nameColIndex = c.getColumnIndex("name");
             int ageColIndex = c.getColumnIndex("age");

@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:hint="@string/hint_title" />
+            android:background="@drawable/edittext_style"
+            android:hint="@string/hint_title"
+            android:lines="4" />
 
         <TextView
             android:id="@+id/textView18"
@@ -24,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Choose personal information to append"
+            android:text="@string/choose_personal_information"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -42,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Choose education to append"
+            android:text="@string/choose_education"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -60,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Chhosw skills to append"
+            android:text="@string/choose_skills_to_append"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -95,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Choose languages to append"
+            android:text="@string/choose_languages_to_append"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -113,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:text="Choose information about yourself to append"
+            android:text="@string/choose_information_about_yourself_to_append"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
@@ -125,24 +127,6 @@
             android:gravity="center"
             android:orientation="vertical"></LinearLayout>
 
-        <!--<TextView
-            android:id="@+id/textView23"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:text="Choose cover letter to append"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
-            android:id="@+id/newCVCoverLetterContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:gravity="center"
-            android:orientation="vertical"></LinearLayout>-->
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -152,20 +136,20 @@
 
             <Button
                 android:id="@+id/buttonNewCVCreate"
-                style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:background="@drawable/button_style"
                 android:onClick="onNewCVButtonClick"
                 android:text="@string/create" />
 
             <Button
                 android:id="@+id/buttonNewCVBack"
-                style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/button_style"
                 android:onClick="onNewCVButtonClick"
                 android:text="@string/back" />
 

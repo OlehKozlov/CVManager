@@ -41,21 +41,23 @@
         <EditText
             android:id="@+id/editTextExp"
             android:layout_width="287dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:background="@drawable/edittext_style"
             android:ems="10"
             android:focusable="true"
             android:hint="@string/hint_text"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:lines="4" />
 
         <Button
             android:id="@+id/buttonAddExperience"
-            style="@style/button_style"
             android:layout_width="185dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:background="@drawable/button_style"
             android:onClick="onExperienceButtonClick"
             android:text="@string/append_button" />
 
@@ -68,21 +70,21 @@
 
             <Button
                 android:id="@+id/buttonDeleteExperience"
-                style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="5dp"
+                android:background="@drawable/button_style"
                 android:onClick="onExperienceButtonClick"
                 android:text="@string/delete" />
 
             <Button
                 android:id="@+id/buttonBackExperience"
-                style="@style/button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="5dp"
+                android:background="@drawable/button_style"
                 android:onClick="onExperienceButtonClick"
                 android:text="@string/back" />
         </LinearLayout>

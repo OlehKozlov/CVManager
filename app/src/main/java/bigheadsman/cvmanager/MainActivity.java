@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -29,18 +27,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
-
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static final int REQ_CODE_PICK_IMAGE = 1;
     public int PICK_IMAGE_REQUEST = 1;
+    DatabaseHelper dbHealper;
     private String foto = "foto";
     private String name;
     private String phone;
@@ -48,22 +44,13 @@ public class MainActivity extends AppCompatActivity
     private String email;
     private String address;
     private String sex;
-    DatabaseHelper dbHealper;
-    private Locale mNewLocale;
+    private ArrayList<Fragment> fragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -71,16 +58,15 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        fragmentList.add(new MainFragment());
+        fragmentList.add(new PersonalDataFragment());
+        fragmentList.add(new EducationFragment());
+        fragmentList.add(new SkillsFragment());
+        fragmentList.add(new ExperienceFragment());
+        fragmentList.add(new LanguagesFragment());
+        fragmentList.add(new AboutMyselfFragment());
+        fragmentList.add(new LettersFragment());
         replaceFragmentToMain();
-    }
-
-    public void setLocale(String mLang) {
-        mNewLocale = new Locale(mLang);
-        Locale.setDefault(mNewLocale);
-        android.content.res.Configuration config = new android.content.res.Configuration();
-        config.locale = mNewLocale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     @Override
@@ -95,30 +81,22 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (id == R.id.personal_data) {
@@ -142,9 +120,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.letters) {
             Fragment lettersFragment = new LettersFragment();
             transaction.replace(R.id.fragmentContainer, lettersFragment);
-        } else if (id == R.id.choose_languages) {
-            Fragment chooseLocaleFragment = new ChooseLoacaleFragment();
-            transaction.replace(R.id.fragmentContainer, chooseLocaleFragment);
+        } else if (id == R.id.exit) {
+            finish();
         }
         transaction.addToBackStack(null);
         transaction.commit();
@@ -185,8 +162,6 @@ public class MainActivity extends AppCompatActivity
                     sex = "Male";
                 } else if (rbF.isChecked()) {
                     sex = "Female";
-                } else {
-                    sex = "Hermafrodit";
                 }
                 EditText editPhone = (EditText) findViewById(R.id.phone);
                 phone = editPhone.getText().toString();
@@ -201,9 +176,9 @@ public class MainActivity extends AppCompatActivity
                 cv.put("sex", sex);
                 cv.put("email", email);
                 cv.put("address", address);
-                db.insert("personalTable", null, cv);
+                db.replace("personalTable", null, cv);
                 db.close();
-                replaceFragmentToPersonalData();
+                replaceFragmentToMain();
                 break;
             }
             case R.id.personalBack: {
@@ -397,6 +372,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.buttonLetterAdd: {
                 ContentValues cv = new ContentValues();
                 SQLiteDatabase db = dbHealper.getWritableDatabase();
+                db.execSQL("delete from lettersTable");
                 EditText editEdu = (EditText) findViewById(R.id.lettersText);
                 cv.put("name", editEdu.getText().toString());
                 db.insert("lettersTable", null, cv);
@@ -424,28 +400,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onChooseLocaleClick(View view) {
-        view.setBackgroundResource(R.color.button_background_active);
-        switch (view.getId()) {
-            case R.id.englishButton: {
-                setLocale("en");
-                break;
-            }
-            case R.id.ukrainianButton: {
-                setLocale("uk");
-                break;
-            }
-            case R.id.russianButton: {
-                setLocale("ru");
-                break;
-            }
-        }
-        replaceFragmentToMain();
     }
 
     public void onMainFragmentButtonClick(View view) {
-        view.setBackgroundResource(R.color.button_background_active);
         Button button = (Button) view;
-        if (button.getText().toString().equals("New")) {
+        if (button.getText().toString().equals(getString(R.string.create_new_cv))) {
             replaceFragmentToNewCV();
         } else {
             SharedPreferences sPref = getPreferences(MODE_PRIVATE);
@@ -471,13 +430,24 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.buttonCVSend: {
+                String str = "";
+                dbHealper = new DatabaseHelper(getApplicationContext());
+                SQLiteDatabase db = dbHealper.getReadableDatabase();
+                Cursor c = db.query("lettersTable", null, null, null, null, null, null);
+                while (c.moveToNext()) {
+                    int nameColIndex = c.getColumnIndex("name");
+                    str = c.getString(nameColIndex);
+                }
+                c.close();
+                db.close();
+                dbHealper.close();
                 String targetFile = Environment.getExternalStorageDirectory().getPath() +
                         "/CV Manager/" + cvName + ".pdf";
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("application/pdf");
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, "");
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, str);
                 emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(targetFile));
                 startActivity(Intent.createChooser(emailIntent, "Send email"));
                 break;
@@ -490,7 +460,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                replaceFragmentToCV();
+                replaceFragmentToMain();
                 break;
             }
             case R.id.buttonCVBack: {
@@ -502,12 +472,6 @@ public class MainActivity extends AppCompatActivity
 
     public void onNewCVButtonClick(View view) {
         switch (view.getId()) {
-          /*  case R.id.buttonNewCVCreate:{
-                NewCVFragment fragment = new NewCVFragment();
-                fragment.createCV(getApplicationContext());
-                replaceFragmentToMain();
-                break;
-            }*/
             case R.id.buttonNewCVBack: {
                 replaceFragmentToMain();
             }
@@ -530,10 +494,10 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    private void replaceFragmentToMain() {
+    public void replaceFragmentToMain() {
         Fragment mainFragment = new MainFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainer, mainFragment);
+        transaction.replace(R.id.fragmentContainer, mainFragment, "main");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -541,7 +505,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToPersonalData() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment personalDataFragment = new PersonalDataFragment();
-        transaction.replace(R.id.fragmentContainer, personalDataFragment);
+        transaction.replace(R.id.fragmentContainer, personalDataFragment, "personal");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -549,7 +513,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToEducation() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment educationFragment = new EducationFragment();
-        transaction.replace(R.id.fragmentContainer, educationFragment);
+        transaction.replace(R.id.fragmentContainer, educationFragment, "education");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -557,7 +521,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToSkills() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment skillsFragment = new SkillsFragment();
-        transaction.replace(R.id.fragmentContainer, skillsFragment);
+        transaction.replace(R.id.fragmentContainer, skillsFragment, "skills");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -565,7 +529,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToExperience() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment experienceFragment = new ExperienceFragment();
-        transaction.replace(R.id.fragmentContainer, experienceFragment);
+        transaction.replace(R.id.fragmentContainer, experienceFragment, "experience");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -573,7 +537,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToLanguages() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment languagesFragment = new LanguagesFragment();
-        transaction.replace(R.id.fragmentContainer, languagesFragment);
+        transaction.replace(R.id.fragmentContainer, languagesFragment, "languages");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -581,7 +545,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToAboutMyself() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment aboutMyselfFragment = new AboutMyselfFragment();
-        transaction.replace(R.id.fragmentContainer, aboutMyselfFragment);
+        transaction.replace(R.id.fragmentContainer, aboutMyselfFragment, "about myself");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -589,7 +553,7 @@ public class MainActivity extends AppCompatActivity
     private void replaceFragmentToLetters() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment lettersFragment = new LettersFragment();
-        transaction.replace(R.id.fragmentContainer, lettersFragment);
+        transaction.replace(R.id.fragmentContainer, lettersFragment, "letters");
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -602,7 +566,7 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    @Override //get foto
+    @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);

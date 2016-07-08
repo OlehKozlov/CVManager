@@ -1,18 +1,11 @@
 package bigheadsman.cvmanager;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.util.Log;
-import android.widget.Toast;
 
-import java.security.BasicPermission;
 
-/**
- * Created by Oleh on 02.10.2015.
- */
 public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
 
     private static final String databaseName = "CVManagerDatabase.db";

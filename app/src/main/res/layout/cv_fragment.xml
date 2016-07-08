@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,41 +12,40 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/buttonCVOpen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/button_style"
-            android:onClick="onCVFragmentButtonClick"
-            android:text="Open"
             android:layout_margin="5dp"
-            android:id="@+id/buttonCVOpen" />
+            android:background="@drawable/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="@string/open_cv" />
 
         <Button
+            android:id="@+id/buttonCVSend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/button_style"
-            android:onClick="onCVFragmentButtonClick"
-            android:text="Send"
             android:layout_margin="5dp"
-            android:id="@+id/buttonCVSend" />
+            android:background="@drawable/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="@string/sendCV" />
 
         <Button
+            android:id="@+id/buttonCVDelete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/button_style"
-            android:onClick="onCVFragmentButtonClick"
-            android:text="Delete"
             android:layout_margin="5dp"
-            android:id="@+id/buttonCVDelete" />
+            android:background="@drawable/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="@string/delete" />
 
         <Button
+            android:id="@+id/buttonCVBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/button_style"
-            android:onClick="onCVFragmentButtonClick"
-            android:text="Back"
             android:layout_margin="5dp"
-            android:id="@+id/buttonCVBack" />
+            android:background="@drawable/button_style"
+            android:onClick="onCVFragmentButtonClick"
+            android:text="@string/back" />
     </LinearLayout>
-
 
 </ScrollView>

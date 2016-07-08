@@ -5,14 +5,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.io.File;
 
@@ -28,7 +24,7 @@ public class MainFragment extends Fragment {
         if (dirFiles.isDirectory()) {
             final String[] filesList = dirFiles.list();
             String[] filesNameList = new String[filesList.length + 1];
-            filesNameList[0] = "New";
+            filesNameList[0] = getString(R.string.create_new_cv);
             for (int i = 0; i < filesList.length; i++) {
                 filesNameList[i + 1] = filesList[i].substring(0, filesList[i].length() - 4);
             }

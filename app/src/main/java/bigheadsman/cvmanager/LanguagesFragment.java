@@ -3,63 +3,68 @@ package bigheadsman.cvmanager;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 public class LanguagesFragment extends Fragment {
-    private int langId;
+    private static ArrayList<Integer> itemList = new ArrayList<Integer>();
     DatabaseHelper dbHealper;
     LinearLayout llt;
-    private static ArrayList<Integer> itemList = new ArrayList<Integer>();
+    private int langId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.languages_fragment, container, false);
-        dbHealper = new DatabaseHelper(view.getContext()); //create a database object
-        SQLiteDatabase db = dbHealper.getReadableDatabase(); // get database to reading
+        dbHealper = new DatabaseHelper(view.getContext());
+        SQLiteDatabase db = dbHealper.getReadableDatabase();
         Cursor c = db.query("languagesTable", null, null, null, null, null, null);
         llt = (LinearLayout) view.findViewById(R.id.languagesContainer);
-        LinearLayout.LayoutParams lEditParams = new LinearLayout.LayoutParams(300, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lEditParams.topMargin = 5;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(0, 5, 0, 0);
         while (c.moveToNext()) {
             int nameColIndex = c.getColumnIndex("name");
             int levelColIndex = c.getColumnIndex("level");
             int idColIndex = c.getColumnIndex("id");
-            final EditText editTxt = new EditText(view.getContext());
-            editTxt.setLayoutParams(lEditParams);
-            editTxt.setFocusable(false);
-            editTxt.setClickable(false);
-            editTxt.setId(c.getInt(idColIndex));
+            final Button button = new Button(view.getContext());
+            button.setBackgroundResource(R.drawable.button_style);
+            button.setLayoutParams(params);
+            button.setId(c.getInt(idColIndex));
             String str = c.getString(nameColIndex) + " - " + c.getString(levelColIndex);
-            editTxt.setText(str);
-            editTxt.setOnClickListener(new View.OnClickListener() {
+            button.setText(str);
+            Drawable icon = getContext().getResources().getDrawable(R.drawable.item_unselected);
+            button.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+            button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    editTxt.setBackgroundColor(Color.WHITE);
-                    langId = editTxt.getId();
+                    langId = button.getId();
                     if (itemList.contains(langId)) {
                         for (int i = 0; i < itemList.size(); i++) {
                             if (itemList.get(i).equals(langId)) {
+                                Drawable icon = getContext().getResources().getDrawable(R.drawable.item_unselected);
+                                button.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
                                 itemList.remove(i);
                             }
                         }
                     } else {
-                        editTxt.setFocusable(true);
-                        //  editTxt.setBackgroundResource(R.color.backgroundButtonF);
+                        Drawable icon = getContext().getResources().getDrawable(R.drawable.item_selected);
+                        button.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
                         itemList.add(langId);
                     }
                 }
             });
-            llt.addView(editTxt);
+            llt.addView(button);
         }
         return view;
     }

@@ -4,8 +4,9 @@
     android:layout_width="150dp"
     android:layout_height="150dp"
     android:layout_margin="5dp"
-    android:textAppearance="?android:attr/textAppearanceListItemSmall"
+    android:background="@drawable/button_style"
     android:gravity="center"
-    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall" />
